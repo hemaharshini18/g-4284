@@ -1,32 +1,67 @@
+
 .header-bar{
   display:flex;
   align-items:center;
-  height:56px;
-  padding:0 1rem;
-  background:#ffffff;
-  border-bottom:1px solid var(--card-border);
-  box-shadow: var(--shadow-sm);
-}
-.logo{
-  font-weight:600;
-  font-size:1.25rem;
-  color:var(--color-primary);
-}
-.spacer{flex:1;}
-.menu-btn{
-  background:none;
-  border:none;
-  font-size:1.5rem;
-  margin-right:.75rem;
-  cursor:pointer;
-  display:none; /* Hide by default on larger screens */
+  height:64px;
+  padding:0 2rem;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border-bottom:1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
-/* This will be overridden in the main layout's CSS for mobile */
+.logo{
+  font-weight:700;
+  font-size:1.4rem;
+  color: #1e293b;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.spacer{flex:1;}
+
+.menu-btn{
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  border: 1px solid #cbd5e1;
+  font-size:1.2rem;
+  margin-right:1rem;
+  cursor:pointer;
+  display:none;
+  padding: 0.5rem;
+  border-radius: 8px;
+  color: #475569;
+  transition: all 0.2s ease;
+}
+
+.menu-btn:hover {
+  background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+  transform: translateY(-1px);
+}
 
 .avatar{
-  background:none;
-  border:none;
-  color:var(--text-body);
-  cursor:pointer;
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.avatar:hover {
+  background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
+  transform: translateY(-1px);
+}
+
+/* Show menu button on mobile */
+@media (max-width: 768px) {
+  .menu-btn {
+    display: block;
+  }
+  
+  .header-bar {
+    padding: 0 1rem;
+  }
 }

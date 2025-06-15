@@ -1,5 +1,7 @@
+
 import { Routes, Route } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute';
+import LandingPage from './pages/LandingPage';
 import LoginPage from './pages/LoginPage';
 import DashboardLayout from './pages/DashboardLayout';
 import EmployeesPage from './pages/EmployeesPage';
@@ -24,8 +26,10 @@ import './App.css';
 function App() {
   return (
     <Routes>
+      <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<LoginPage />} />
-      <Route element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>        <Route index element={<EmployeesPage />} />
+      <Route path="/dashboard" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
+        <Route index element={<EmployeesPage />} />
         <Route path="attendance" element={<AttendancePage />} />
         <Route path="leave" element={<LeavePage />} />
         <Route path="payroll" element={<PayrollPage />} />
@@ -34,13 +38,13 @@ function App() {
         <Route path="analytics" element={<AnalyticsPage />} />
         <Route path="recruitment" element={<RecruitmentPage />} />
         <Route path="documents" element={<DocumentsPage />} />
-              <Route path="onboarding" element={<OnboardingPage />} />
-              <Route path="offboarding" element={<OffboardingPage />} />
-              <Route path="leave-policies" element={<LeavePoliciesPage />} />
-              <Route path="goals" element={<GoalManagementPage />} />
-              <Route path="users" element={<UserManagementPage />} />
-              <Route path="dashboard/anomalies" element={<AnomalyDashboardPage />} />
-              <Route path="analytics" element={<AnalyticsDashboardPage />} />
+        <Route path="onboarding" element={<OnboardingPage />} />
+        <Route path="offboarding" element={<OffboardingPage />} />
+        <Route path="leave-policies" element={<LeavePoliciesPage />} />
+        <Route path="goals" element={<GoalManagementPage />} />
+        <Route path="users" element={<UserManagementPage />} />
+        <Route path="dashboard/anomalies" element={<AnomalyDashboardPage />} />
+        <Route path="analytics" element={<AnalyticsDashboardPage />} />
         <Route path="employees/:id" element={<EmployeeProfile />} />
       </Route>
     </Routes>
