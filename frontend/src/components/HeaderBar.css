@@ -1,0 +1,32 @@
+.header-bar{
+  display:flex;
+  align-items:center;
+  height:56px;
+  padding:0 1rem;
+  background:#ffffff;
+  border-bottom:1px solid var(--card-border);
+  box-shadow: var(--shadow-sm);
+}
+.logo{
+  font-weight:600;
+  font-size:1.25rem;
+  color:var(--color-primary);
+}
+.spacer{flex:1;}
+.menu-btn{
+  background:none;
+  border:none;
+  font-size:1.5rem;
+  margin-right:.75rem;
+  cursor:pointer;
+  display:none; /* Hide by default on larger screens */
+}
+
+/* This will be overridden in the main layout's CSS for mobile */
+
+.avatar{
+  background:none;
+  border:none;
+  color:var(--text-body);
+  cursor:pointer;
+}

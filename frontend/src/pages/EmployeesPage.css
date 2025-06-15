@@ -1,0 +1,39 @@
+.emp-card{
+  margin:auto;
+  max-width:900px;
+}
+.emp-header{
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  margin-bottom:1.5rem;
+  flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+.emp-header h1{flex:1;margin:0; min-width: 150px;}
+.add-btn{white-space:nowrap;}
+
+.emp-form{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:.75rem;
+  margin-bottom:1.5rem;
+}
+
+table{width:100%;border-collapse:collapse;}
+th,td{padding:.75rem 1rem;border:1px solid var(--card-border);text-align:left;}
+tr:nth-child(even){background:#f9fafb;}
+.click-row{cursor:pointer;transition:background .15s;}
+.click-row:hover{background:#eef2ff;}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .emp-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .emp-form {
+    grid-template-columns: 1fr; /* Stack form fields */
+  }
+}
+

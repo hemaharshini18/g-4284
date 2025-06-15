@@ -1,0 +1,140 @@
+/* AnomalyDashboard.css */
+
+.anomaly-dashboard-container {
+  padding: 2rem;
+  background-color: #f4f7f9;
+  min-height: 100vh;
+}
+
+.dashboard-title {
+  font-size: 2.25rem;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.dashboard-subtitle {
+  font-size: 1.1rem;
+  color: #7f8c8d;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.loading-text,
+.error-text,
+.no-anomalies-text {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #7f8c8d;
+  margin-top: 4rem;
+}
+
+.no-anomalies-found {
+  text-align: center;
+  padding: 3rem;
+  background-color: #e8f5e9;
+  border: 1px solid #c8e6c9;
+  border-radius: 8px;
+  margin: 2rem auto;
+  max-width: 600px;
+}
+
+.no-anomalies-found h2 {
+  font-size: 1.8rem;
+  color: #2e7d32;
+}
+
+.anomalies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+}
+
+.anomaly-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-left: 5px solid;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+}
+
+.anomaly-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.card-header .icon {
+  font-size: 1.5rem;
+  margin-right: 0.75rem;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #34495e;
+  flex-grow: 1;
+}
+
+.card-severity {
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.card-body {
+  padding: 1rem;
+  flex-grow: 1;
+}
+
+.card-description {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.card-employee,
+.card-recommendation {
+  font-size: 0.9rem;
+  color: #333;
+  margin-top: 0.5rem;
+  padding-left: 0.5rem;
+  border-left: 2px solid #ecf0f1;
+}
+
+.card-footer {
+  padding: 0.75rem 1rem;
+  background-color: #f8f9f9;
+  border-top: 1px solid #ecf0f1;
+  text-align: right;
+}
+
+.card-date {
+  font-size: 0.8rem;
+  color: #95a5a6;
+}
+
+/* Severity-specific styles */
+.anomaly-card.high { border-color: #e74c3c; }
+.anomaly-card.high .icon { color: #e74c3c; }
+.anomaly-card.high .card-severity { background-color: #e74c3c; }
+
+.anomaly-card.medium { border-color: #f39c12; }
+.anomaly-card.medium .icon { color: #f39c12; }
+.anomaly-card.medium .card-severity { background-color: #f39c12; }
+
+.anomaly-card.low { border-color: #3498db; }
+.anomaly-card.low .icon { color: #3498db; }
+.anomaly-card.low .card-severity { background-color: #3498db; }

@@ -1,0 +1,324 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// User model for authentication
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  role      String   @default("EMPLOYEE") // Changed from enum to String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  employee  Employee?
+}
+
+// Employee model for HR data
+model Employee {
+  id               Int      @id @default(autoincrement())
+  firstName        String
+  lastName         String
+  email            String   @unique
+  phone            String?
+  jobTitle         String?
+  department       String
+  hireDate         DateTime
+  status           String @default("ONBOARDING") // ONBOARDING, ACTIVE, OFFBOARDING, TERMINATED
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  
+  // Relation to User model
+  user             User     @relation(fields: [userId], references: [id])
+  userId           Int      @unique
+
+  // relations
+  attendances     Attendance[]
+  leaves          Leave[]
+  payrolls        Payroll[]
+  onboardingTasks OnboardingTask[]
+  offboardingTasks OffboardingTask[]
+  leaveBalances   LeaveBalance[]
+  goals           Goal[]
+}
+
+// Attendance model
+model Attendance {
+  id          Int       @id @default(autoincrement())
+  date        DateTime
+  status      String    // PRESENT, ABSENT, LEAVE
+  checkIn     DateTime?
+  checkOut    DateTime?
+  totalHours  Float?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // relations
+  employee    Employee  @relation(fields: [employeeId], references: [id])
+  employeeId  Int
+
+  @@unique([employeeId, date])
+}
+
+// Leave model
+model Leave {
+  id          Int         @id @default(autoincrement())
+  startDate   DateTime
+  endDate     DateTime
+  type        String      @default("PERSONAL") // SICK, VACATION, PERSONAL
+  days        Float?      // Number of days requested
+  status      String      @default("PENDING") // PENDING, APPROVED, REJECTED
+  reason      String?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  // relations
+  employee    Employee    @relation(fields: [employeeId], references: [id])
+  employeeId  Int
+  policy      LeavePolicy? @relation(fields: [policyId], references: [id])
+  policyId    Int?
+}
+
+// LeavePolicy model for defining leave types and rules
+model LeavePolicy {
+  id               Int      @id @default(autoincrement())
+  name             String   @unique // e.g., "Annual Leave", "Sick Leave"
+  defaultAllowance Float    // Number of days per year
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  // Relations
+  leaveRequests    Leave[]
+  leaveBalances    LeaveBalance[]
+}
+
+// LeaveBalance model
+model LeaveBalance {
+  id          Int       @id @default(autoincrement())
+  employee    Employee  @relation(fields: [employeeId], references: [id])
+  employeeId  Int
+  leaveType   String    // SICK, VACATION, PERSONAL
+  balance     Float     // Number of days remaining
+  lastUpdated DateTime  @default(now()) @updatedAt
+  year        Int       // Year this balance is for
+
+  @@unique([employeeId, leaveType, year])
+}
+
+// Candidate model for recruitment
+model Candidate {
+  id               Int      @id @default(autoincrement())
+  name             String
+  email            String   @unique
+  phone            String?
+  resumeUrl        String
+  status           String   @default("NEW") // NEW, REVIEWING, SHORTLISTED, REJECTED, HIRED
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  // Parsed data from resume
+  parsedName       String?
+  parsedPhone      String?
+  parsedEducation  Json?    // Array of education objects
+  parsedLinks      Json?    // Object with github, linkedin, other arrays
+
+  // Relations
+  applications     Application[]
+  interviewSlots   InterviewSlot[]
+  notes            Note[]
+}
+
+// Application model
+model Application {
+  id          Int      @id @default(autoincrement())
+  candidate   Candidate @relation(fields: [candidateId], references: [id])
+  candidateId Int
+  jobId       Int
+  job         Job      @relation(fields: [jobId], references: [id])
+  status      String   @default("SUBMITTED") // SUBMITTED, REVIEWING, SHORTLISTED, REJECTED, HIRED
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  notes       Note[]
+}
+
+// InterviewSlot model
+model InterviewSlot {
+  id          Int      @id @default(autoincrement())
+  candidate   Candidate @relation(fields: [candidateId], references: [id])
+  candidateId Int
+  date        DateTime
+  startTime   DateTime
+  endTime     DateTime
+  interviewer Employee @relation(fields: [interviewerId], references: [id])
+  interviewerId Int
+  status      String   @default("SCHEDULED") // SCHEDULED, COMPLETED, CANCELLED
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  notes       Note[]
+}
+
+// Note model
+model Note {
+  id          Int      @id @default(autoincrement())
+  content     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  author      Employee @relation(fields: [authorId], references: [id])
+  authorId    Int
+  candidate   Candidate? @relation(fields: [candidateId], references: [id])
+  candidateId Int?
+  application Application? @relation(fields: [applicationId], references: [id])
+  applicationId Int?
+  interview   InterviewSlot? @relation(fields: [interviewId], references: [id])
+  interviewId Int?
+}
+
+// Job model
+model Job {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  status      String   @default("OPEN") // OPEN, CLOSED, FILLED
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  applications Application[]
+}
+
+// Payroll model
+model Payroll {
+  id          Int     @id @default(autoincrement())
+  month       Int     // 1-12
+  year        Int
+  basic       Float
+  allowances  Float
+  deductions  Float
+  netPay      Float
+  status      String  @default("PENDING") // PENDING, APPROVED, PAID
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // relations
+  employee    Employee @relation(fields: [employeeId], references: [id])
+  employeeId  Int
+}
+
+// Goal model
+model Goal {
+  id          Int       @id @default(autoincrement())
+  title       String
+  description String
+  targetDate  DateTime
+  status      String    @default("IN_PROGRESS") // IN_PROGRESS, COMPLETED, OVERDUE
+  priority    String    // LOW, MEDIUM, HIGH
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // relations
+  employee    Employee  @relation(fields: [employeeId], references: [id])
+  employeeId  Int
+}
+
+// OnboardingTask model
+model OnboardingTask {
+  id          Int      @id @default(autoincrement())
+  employeeId  Int
+  employee    Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  taskName    String
+  completed   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  completedAt DateTime?
+}
+
+model OnboardingTemplate {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  tasks       OnboardingTemplateTask[]
+}
+
+model OnboardingTemplateTask {
+  id          Int      @id @default(autoincrement())
+  templateId  Int
+  template    OnboardingTemplate @relation(fields: [templateId], references: [id], onDelete: Cascade)
+  taskName    String
+  description String?
+  order       Int
+
+  @@unique([templateId, order])
+}
+
+model OffboardingTask {
+  id          Int      @id @default(autoincrement())
+  employeeId  Int
+  employee    Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  taskName    String
+  completed   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  completedAt DateTime?
+}
+
+model OffboardingTemplate {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  tasks       OffboardingTemplateTask[]
+}
+
+model OffboardingTemplateTask {
+  id          Int      @id @default(autoincrement())
+  templateId  Int
+  template    OffboardingTemplate @relation(fields: [templateId], references: [id], onDelete: Cascade)
+  taskName    String
+  description String?
+  order       Int
+
+  @@unique([templateId, order])
+}
+
+model Document {
+  id           Int      @id @default(autoincrement())
+  filename     String
+  filepath     String?  // S3 URL or local path
+  mimetype     String
+  size         Int
+  originalName String?  // User's original filename
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+// Candidate model for recruitment
+model Candidate {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  resumeUrl String
+  status                 String @default("NEW") // Reverted from enum due to SQLite limitations
+  parsedName             String? // Name as extracted from resume
+  parsedPhone            String?
+  parsedLinks            String? // Stored as delimited string, e.g., comma-separated
+  parsedSkills           String? // Stored as delimited string
+  parsedEducation        String? // Stored as delimited string
+  parsedExperience       String? // Stored as delimited string
+  parsedCertifications   String? // Stored as delimited string
+  createdAt              DateTime        @default(now())
+  updatedAt              DateTime        @updatedAt
+}

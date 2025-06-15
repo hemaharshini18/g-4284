@@ -1,0 +1,174 @@
+/* PayrollPage.css */
+
+@media (max-width: 600px) {
+  .action-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .payroll-form .form-row {
+    grid-template-columns: 1fr; /* Stack form fields */
+  }
+}
+
+
+.payroll-page .page-header {
+  margin-bottom: 1.5rem;
+}
+
+.payroll-page .page-header h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.payroll-page .page-header p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.action-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.filters .filter-icon {
+  color: var(--text-secondary);
+  font-size: 1.25rem;
+}
+
+.filters select,
+.filters input {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--input-border-color);
+  border-radius: var(--border-radius);
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  min-width: 120px;
+}
+
+.filters input[type="number"] {
+  width: 80px;
+}
+
+/* Payroll Form */
+.payroll-form-card {
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.payroll-form-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+}
+
+.payroll-form .form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.payroll-form select,
+.payroll-form input {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--input-border-color);
+  border-radius: var(--border-radius);
+  background-color: var(--input-bg);
+  font-size: 0.9rem;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.form-actions .btn-primary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Table Styles */
+.table-container {
+  padding: 0;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+}
+
+thead {
+  background-color: var(--table-header-bg);
+}
+
+th {
+  padding: 0.8rem 1.5rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--card-border);
+}
+
+td {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--card-border);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr:hover {
+  background-color: var(--table-row-hover-bg);
+}
+
+.text-right {
+  text-align: right;
+}
+
+.employee-cell {
+  display: flex;
+  flex-direction: column;
+}
+
+.employee-cell span {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.net-salary {
+  font-weight: 600;
+  color: var(--color-success);
+}

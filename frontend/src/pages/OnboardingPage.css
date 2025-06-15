@@ -1,0 +1,95 @@
+.onboarding-page {
+  padding: 2rem;
+  background-color: #f9fafb;
+}
+
+.header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.header p {
+  font-size: 1.1rem;
+  color: #4b5563;
+}
+
+.onboarding-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+}
+
+.employee-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  transition: transform 0.2s ease-in-out;
+}
+
+.employee-card:hover {
+  transform: translateY(-5px);
+}
+
+.employee-info h2 {
+  font-size: 1.5rem;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+.employee-info p {
+  color: #6b7280;
+  margin-bottom: 0.25rem;
+}
+
+.task-list {
+  margin-top: 1.5rem;
+}
+
+.task-list h3 {
+  font-size: 1.2rem;
+  color: #374151;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.task-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.task-list li {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0;
+  font-size: 1rem;
+  color: #4b5563;
+}
+
+.task-list li.completed label {
+  text-decoration: line-through;
+  color: #9ca3af;
+}
+
+.task-list input[type="checkbox"] {
+  margin-right: 0.75rem;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+}
+
+.no-data-message {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #6b7280;
+  padding: 3rem;
+  background-color: #fff;
+  border-radius: 8px;
+}

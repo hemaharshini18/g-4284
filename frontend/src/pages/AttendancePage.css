@@ -1,0 +1,146 @@
+.attendance-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.attendance-widget {
+  padding: 1.5rem;
+}
+
+.widget-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
+}
+
+.widget-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.live-clock {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.widget-body .status-display {
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.widget-body .status-display p {
+  margin: 0.5rem 0;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.action-buttons button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.attendance-history {
+  padding: 1.5rem;
+}
+
+.attendance-history h3 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.error-message {
+  color: #d9534f;
+  margin-top: 1rem;
+}
+
+.upload-btn {
+  background: var(--color-primary);
+  color: #fff;
+  padding: 0.45rem 1rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.upload-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.filters {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-left: auto;
+  flex-wrap: wrap;
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 0.85rem;
+}
+
+.edit-bar {
+  background: #f1f5ff;
+  padding: 0.5rem 1rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin: 1rem 0;
+  border: 1px solid var(--card-border);
+  border-radius: var(--border-radius);
+  flex-wrap: wrap;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+th, td {
+  padding: 0.65rem 1rem;
+  border: 1px solid var(--card-border);
+  text-align: left;
+}
+
+tr:nth-child(even) {
+  background: #f9fafb;
+}
+th,td{padding:.65rem 1rem;border:1px solid var(--card-border);text-align:left;}
+tr:nth-child(even){background:#f9fafb;}
+
+@media (max-width: 600px) {
+  .header-row, .filters, .edit-bar {
+    flex-direction: column;
+    align-items: stretch;
+    margin-left: 0;
+  }
+}

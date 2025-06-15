@@ -1,0 +1,209 @@
+.analytics-dashboard-refreshed {
+  padding: 2rem;
+  background-color: #f9fafb;
+}
+
+.dashboard-header {
+  margin-bottom: 2rem;
+}
+
+.dashboard-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 0.5rem 0;
+}
+
+.dashboard-header p {
+  font-size: 1.1rem;
+  color: #6b7280;
+}
+
+.summary-cards-refreshed {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.card-refreshed {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.02);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-refreshed:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.card-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Icons for each card */
+.card-icon.employees { background-color: #e0f2fe; background-image: url('https://icongr.am/feather/users.svg?size=28&color=0284c7'); }
+.card-icon.onboarding { background-color: #e0f7fa; background-image: url('https://icongr.am/feather/user-plus.svg?size=28&color=0891b2'); }
+.card-icon.goals { background-color: #eef2ff; background-image: url('https://icongr.am/feather/target.svg?size=28&color=4338ca'); }
+.card-icon.completion { 
+  background-image: url('https://img.icons8.com/fluency/48/checked-checkbox.png');
+}
+
+.card-icon.goals-manager {
+  background-image: url('https://img.icons8.com/fluency/48/target.png');
+}
+
+.card-icon.leave-manager {
+  background-image: url('https://img.icons8.com/fluency/48/beach.png');
+}
+
+.card-content h4 {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+.card-content span {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.charts-grid-refreshed {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.chart-container-refreshed {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.chart-container-refreshed h3 {
+  text-align: left;
+  margin-top: 0;
+  margin-bottom: 2rem;
+  color: #111827;
+  font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .summary-cards-refreshed {
+    grid-template-columns: 1fr;
+  }
+
+  .charts-grid-refreshed {
+    grid-template-columns: 1fr;
+  }
+}
+
+.table-container-refreshed {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-top: 2rem;
+  overflow-x: auto; /* For smaller screens */
+}
+
+.modern-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.modern-table th,
+.modern-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #f0f0f0;
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+.modern-table th {
+  font-weight: 600;
+  color: #555;
+  background-color: #f9fafb;
+}
+
+.modern-table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* Styles for Employee Dashboard List */
+.modern-list {
+  list-style: none;
+  padding: 0;
+}
+
+.modern-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.modern-list li:last-child {
+  border-bottom: none;
+}
+
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-badge.present {
+  background-color: #dcfce7; /* green-100 */
+  color: #166534; /* green-800 */
+}
+
+.status-badge.absent {
+  background-color: #fee2e2; /* red-100 */
+  color: #991b1b; /* red-800 */
+}
+
+.status-badge.leave {
+  background-color: #ffedd5; /* orange-100 */
+  color: #9a3412; /* orange-800 */
+}
+
+.status-badge.holiday {
+  background-color: #e0e7ff; /* indigo-100 */
+  color: #3730a3; /* indigo-800 */
+}
+
+.loading, .error-message {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+}
+
+.error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 1rem;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    margin: 1rem 0;
+}

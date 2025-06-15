@@ -1,0 +1,37 @@
+:root {
+  /* Keka-like colour palette */
+  --color-primary: #3366ff;
+  --color-primary-hover: #254eda;
+  --sidebar-bg: #1e293b;
+  --sidebar-text: #ffffff;
+  --body-bg: #f5f7fa;
+  --card-bg: #ffffff;
+  --card-border: #e5e7eb;
+  --text-heading: #1f2937;
+  --text-body: #374151;
+  --border-radius: 6px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.08);
+  --shadow-lg: 0 4px 12px rgba(0,0,0,.12);
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm); transition:box-shadow .15s;
+  padding: 1.5rem;
+}
+.card:hover{box-shadow:var(--shadow-lg);}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-weight: 500;
+}
+.btn-primary:hover {
+  background: var(--color-primary-hover);
+}
