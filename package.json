@@ -8,6 +8,7 @@
     "@prisma/client": "^6.9.0",
     "@vitejs/plugin-react": "^4.5.2",
     "date-fns": "^4.1.0",
+    "lovable-tagger": "^1.1.8",
     "pdfkit": "^0.17.1",
     "vite": "^6.3.5"
   }
