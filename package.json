@@ -6,7 +6,9 @@
   },
   "dependencies": {
     "@prisma/client": "^6.9.0",
+    "@vitejs/plugin-react": "^4.5.2",
     "date-fns": "^4.1.0",
-    "pdfkit": "^0.17.1"
+    "pdfkit": "^0.17.1",
+    "vite": "^6.3.5"
   }
 }
